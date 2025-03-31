@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EID Mubarak</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @font-face {
+            font-family: 'RamadanKareem';
+            src: url('font/RamadanKareem.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        
+        .font {
+            font-family: 'RamadanKareem', sans-serif;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="bg-[url('https://t4.ftcdn.net/jpg/07/13/33/37/360_F_713333710_R3p5I7kK6qfcsQyOqVzlNYNSWJQsKTab.jpg')] bg-cover bg-center w-screen h-screen flex flex-col gap-2 justify-center items-center">
+        <img id="lamp" class="transition-all duration-500 absolute h-[200px] w-[200px] md:h-[300px] md:w-[300px] top-0 left-0 -mt-72" src="https://cdn3d.iconscout.com/3d/premium/thumb/islamic-lantern-3d-icon-download-in-png-blend-fbx-gltf-file-formats--arabic-lamp-light-ramadan-eid-mubarak-pack-culture-religion-festivals-icons-6578368.png" alt="">
+        <img id="moon" class="transition-all duration-700 absolute h-[200px] w-[200px] md:h-[200px] md:w-[200px] top-0 left-0 mt-[100px] ml-[200px] md:ml-[650px] opacity-0 " src="https://png.pngtree.com/png-clipart/20230401/original/pngtree-3d-eid-mubarak-moon-png-image_9017322.png" alt="">        
+        <input id="nameBox" type="text" placeholder="Enter your name hare" class="transition-all h-16 w-80 border border-[#FF9B17] rounded-xl bg-white opacity-50 focus:outline-none px-5 text-1xl text-[#FF9B17] font-bold" autocomplete="off">
+        <button id="wishBtn" class="transition-all h-14 w-80 bg-yellow-50 rounded-xl text-[#FF9B17] font-bold">Recieve Wish</button>
+        <p id="wish" class="transition-all text-6xl font hidden text-[#FF9B17]"></p>
+        <p id="name" class="transition-all font text-2xl uppercase text-[#FF9B17]"></p>
+        <p id="from" class="font text-1xl text-[#FF9B17]"></p>
+    </div>
+    <script>
+        document.getElementById("wishBtn").addEventListener("click", () => {
+            const inputName = document.getElementById("nameBox");
+            const wishBtn = document.getElementById("wishBtn");
+            const wishText = document.getElementById("wish");
+            const wishName = document.getElementById("name");
+            const lamp = document.getElementById("lamp");
+            const moon = document.getElementById("moon");
+            const from = document.getElementById("from")
+
+            wishText.classList.remove("hidden");
+            inputName.classList.add("hidden");
+            wishBtn.classList.add("hidden");
+
+            lamp.classList.remove("-mt-72")
+            lamp.classList.add("mt-0")
+
+            moon.classList.remove("opacity-0")
+            moon.classList.add("opacity-100")
+
+            const eidWish = "EID MUBARAK";
+            let index1 = 0;
+
+            function typeEffectEid() {
+                if (index1 < eidWish.length) {
+                    wishText.innerHTML += eidWish[index1];
+                    index1++;
+                    setTimeout(typeEffectEid, 2000 / eidWish.length);
+                } else {
+                    // Start name typing after "EID MUBARAK" is fully typed
+                    startNameTyping();
+                }
+            }
+
+            typeEffectEid();
+
+            function startNameTyping() {
+                const userMessage = inputName.value.trim();
+                if (!userMessage) return;
+
+                let index2 = 0;
+                function typeEffectName() {
+                    if (index2 < userMessage.length) {
+                        wishName.innerHTML += userMessage[index2];
+                        index2++;
+                        setTimeout(typeEffectName, 2000 / userMessage.length);
+                    } else {
+                        startFromTyping(); // Start "FROM NAKIB" after name is typed
+                    }
+                }
+                typeEffectName();
+            }
+
+            const fromMe = "FROM NAKIB";
+            let index3 = 0;
+
+            function startFromTyping() {
+                function typeEffectFrom() {
+                    if (index3 < fromMe.length) {
+                        from.innerHTML += fromMe[index3];
+                        index3++;
+                        setTimeout(typeEffectFrom, 2000 / fromMe.length);
+                    }
+                }
+                typeEffectFrom();
+            }
+        });
+
+    </script>
+</body>
+</html>
